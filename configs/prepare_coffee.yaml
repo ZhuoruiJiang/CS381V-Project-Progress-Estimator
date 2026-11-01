@@ -1,0 +1,40 @@
+source:
+  root: data/prepare_coffee/lerobot
+  repo_id: local/PrepareCoffee
+  video_backend: pyav
+  split: train                   # train | val | test; val/test disable augmentation
+  split_file: configs/splits/prepare_coffee.json
+  episodes: null                  # manual episode selection requires split: null
+
+cameras:
+  - observation.images.robot0_agentview_left
+  - observation.images.robot0_agentview_right
+  - observation.images.robot0_eye_in_hand
+
+access:
+  mode: frame                    # frame | history
+  stride: 1                      # history sampling interval, measured in frames
+  max_frames: null               # null = full history; e.g. 16 = recent 16 samples
+
+preprocessing:                    # applied in order; [] disables all steps
+  - name: resize
+    size: [224, 224]
+  - name: to_float
+  - name: normalize
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+augmentation:                     # one attempt per method per episode, in this order
+  - name: rewind
+    enabled: true
+    probability: 0.5
+    min_frames: 5
+    max_frames: 20
+  - name: freeze
+    enabled: false
+    probability: 0.5
+    min_frames: 5
+    max_frames: 20
+
+metadata_fields: []               # optional aligned fields; never included in images
+seed: 0                          # fixes episode timelines across workers and epochs

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrepareCoffee progress evaluation</title>
+  <style>__STYLES__</style>
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">CS381V / QUALITATIVE EVALUATION</p><h1>Progress, frame by frame</h1>
+      <p id="runName" class="subtitle"></p></div>
+    <span class="badge">5 fixed held-out episodes</span>
+  </header>
+  <main>
+    <aside><h2>Episodes</h2><p class="muted">Select a trajectory to inspect.</p>
+      <nav id="episodes" aria-label="Evaluation episodes"></nav>
+      <p class="aside-note">Raw model predictions.<br>No smoothing or accumulation.</p>
+    </aside>
+    <section class="workspace" aria-label="Episode viewer">
+      <div class="episode-heading"><div><p class="eyebrow">PREPARE COFFEE</p>
+        <h2 id="episodeTitle"></h2></div><div class="downloads">
+        <a id="csvLink" download>Predictions CSV ↗</a><a id="plotLink" download>Plot PNG ↗</a>
+      </div></div>
+      <div class="cards">
+        <section class="video-card"><div class="card-heading"><h3>Observation</h3>
+          <select id="camera" aria-label="Camera view"></select></div>
+          <div class="video-stage multi-camera-grid" id="cameraGrid">
+            <div class="camera-panel"><video id="video" muted playsinline preload="auto"></video>
+              <span class="video-label" id="mainCameraLabel">Main view</span></div>
+            <div class="camera-side" id="cameraSide">
+              <div class="camera-panel" id="rightPanel"><video id="videoRight" muted playsinline preload="auto"></video>
+                <span class="video-label" id="rightCameraLabel">Right view</span></div>
+              <div class="camera-panel" id="wristPanel"><video id="videoWrist" muted playsinline preload="auto"></video>
+                <span class="video-label" id="wristCameraLabel">Wrist view</span></div>
+            </div>
+          </div>
+          <p id="videoError" role="alert" hidden>Video could not load. Keep the videos folder beside this report.</p>
+        </section>
+        <section class="score-card"><p class="eyebrow">PREDICTED PROGRESS</p>
+          <output id="score" aria-live="off">0.000</output>
+          <div class="score-track"><div id="scoreFill"></div></div>
+          <p class="muted">Raw score at the selected frame</p>
+          <dl><div><dt>Timestep</dt><dd id="frameReadout"></dd></div>
+            <div><dt>Time</dt><dd id="timeReadout"></dd></div>
+            <div><dt>Frames</dt><dd id="frameCount"></dd></div></dl>
+        </section>
+      </div>
+      <section class="chart-card"><div class="card-heading"><h3>Progress over time</h3>
+          <span class="muted">Hover or click to scrub</span></div>
+        <svg id="chart" viewBox="0 0 900 250" role="img" aria-label="Predicted progress against timestep"></svg>
+        <div class="transport">
+          <button id="play" class="primary" aria-label="Play video">▶ Play</button>
+          <button id="previous" aria-label="Previous frame">←</button>
+          <input id="timeline" type="range" min="0" value="0" step="1" aria-label="Timestep">
+          <button id="next" aria-label="Next frame">→</button>
+          <output id="sliderReadout"></output>
+        </div>
+        <p class="hint">Drag the timestep slider or use ← → to step. Space toggles playback.</p>
+      </section>
+    </section>
+  </main>
+  <footer>Visual review of predicted progress. These curves are not progress ground truth.</footer>
+  <script type="application/json" id="reportData">__REPORT_DATA__</script>
+  <script>__SCRIPT__</script>
+</body>
+</html>

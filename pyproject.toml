@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=71"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coffee-progress"
+version = "0.1.0"
+description = "Configurable RoboCasa video datasets for task progress estimation"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "lerobot==0.3.3",
+  "huggingface-hub>=0.34.2,<1",
+  "av>=14.2,<16",
+  "torch>=2.6,<2.8",
+  "torchvision>=0.21,<0.23",
+  "numpy>=1.26,<3",
+  "pyyaml>=6,<7",
+  "matplotlib>=3.9,<4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.9"]
+
+[project.scripts]
+coffee-download = "coffee_progress.download:main"
+coffee-inspect = "coffee_progress.inspect:main"
+coffee-split = "coffee_progress.splits:main"
+coffee-evaluate = "coffee_progress.evaluation.cli:main"
+coffee-view = "coffee_progress.evaluation.serve:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"coffee_progress.evaluation" = ["assets/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: requires the downloaded RoboCasa dataset"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

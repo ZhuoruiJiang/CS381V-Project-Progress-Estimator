@@ -1,0 +1,28 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.uv-cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+
+# Downloaded data and generated evaluation/video artifacts.
+data/
+outputs/
+
+# Local credentials, editor settings, and OS metadata.
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,7 @@
+# Fixed protocol shared by every estimator. Counts are measured in source frames.
+seed: 0
+bootstrap_samples: 1000
+freeze_frames: 10
+rewind_frames: 16
+stage_pairs: 1000              # candidate distinct frame pairs per episode; same-subtask pairs excluded
+tie_epsilon: 0.000001
