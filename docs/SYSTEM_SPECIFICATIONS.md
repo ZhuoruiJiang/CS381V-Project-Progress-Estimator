@@ -119,7 +119,10 @@ Progress starts at 0 (step-0 start) or (t + 1) / demo states (demo start t). Mat
   actions, success at any step within 876 steps.
 - **Results**: `outputs/rl/<task>/<reward>/seed_<k>/` (config, logs, episodes, `eval/results.json`;
   checkpoints and `resume.pt` not in git). `pr-dashboard` writes `outputs/rl/dashboard/` (mean, 95%
-  bootstrap interval and range over seeds).
+  bootstrap interval and range over seeds). `pr-figures` writes `outputs/rl/<task>/figures/`: the
+  learning curves (same aggregation) and the hacking rate, i.e. the fraction of failed training episodes that
+  start before the reference's midpoint and end at >= 0.9 predicted progress, per 100k steps. A reward whose
+  eval files are missing can supply `<reward>/reported_rates.json` (currently `rarm`, from issue #1).
 
 ## Offline reward evaluation (`progress_reward.evaluation`, `configs/eval/`)
 

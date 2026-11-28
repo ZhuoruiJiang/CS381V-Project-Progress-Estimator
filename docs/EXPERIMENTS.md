@@ -32,6 +32,7 @@ HMM then reject almost everything. The relative emission uses only the ranking.
 pr-train-rl --task add_sweetener --reward <reward> --seed <k> --eval-during-training
 # TACC: sbatch -J <reward>_s<k> scripts/setup/tacc/train.slurm <reward> <k>
 pr-dashboard && pr-view --dashboard
+pr-figures                                 # learning curves + hacking rate for the report
 ```
 
 Rewards: `sparse`, `rarm` (baseline), `rarm_hmm`, `rarm_ft_hmm_rel` (ours), plus ablations as time

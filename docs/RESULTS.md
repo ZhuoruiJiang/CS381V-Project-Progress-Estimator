@@ -19,6 +19,11 @@ deviation across seeds of each seed's last-3 mean; "median" is the median of tho
 | `rarm_ft_hmm_rel` | 5 | 0.00 | 0.15 | 0.32 | 0.55 | 0.80 | 0.76 | 0.95 | 0.75 | **0.82 ± 0.14** | 0.87 |
 
 
+![Step-0 success vs. env steps](../outputs/rl/add_sweetener/figures/learning_curves.png)
+
+Mean over seeds with a 95% bootstrap interval (`pr-figures`). The `rarm` curve uses the rates from
+issue #1 (`outputs/rl/add_sweetener/rarm/reported_rates.json`) until Aananth's eval files arrive.
+
 ## Successes per seed (out of 30)
 
 | Reward | Seed | 100k | 200k | 300k | 400k | 500k | 600k | 700k | 800k | 900k | 1M | Last 3 |
@@ -79,6 +84,23 @@ expected. So the sparse reward works; the policy only succeeds from states close
 
 An independent rerun (seed 5, run by Zhuorui) confirms this. It scores 0/30 at every checkpoint, with a
 training success rate of 24% at 500k and 30% at 1M.
+
+## Reward hacking during training
+
+![Failed episodes at progress >= 0.9](../outputs/rl/add_sweetener/figures/hacking.png)
+
+This figure shows the fraction of failed training episodes that end at ≥ 0.9 predicted progress. It
+counts only episodes that start before the demo's midpoint, so the progress was earned during the
+episode.
+
+| Reward | Runs | 0–250k | 250k–750k | 750k–1M |
+|---|---|---|---|---|
+| `rarm` | 2 (`laptop_seed_0`, `server_seed_1`) | 0.63–0.75 | 0.93 | 0.85–0.95 |
+| `rarm_hmm` | 5 | 0.00–0.06 | 0.12–0.31 | 0.21–0.79 |
+| `rarm_ft_hmm_rel` | 5 | 0.06–0.16 | 0.26–0.53 | 0.52–0.71 |
+
+Ranges are over runs. In the first 250k steps only 3 of about 2,200 such episodes succeed. Late in
+training, failures are rare (about 40 per run) and many are near-misses.
 
 ## Note on `rarm_hmm` seed 3
 

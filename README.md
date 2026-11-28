@@ -42,6 +42,7 @@ fine-tuned heads come from `pr-finetune` or a link set as `heads_url` in `config
 | Train RL (one reward, one seed) | `pr-train-rl --task add_sweetener --reward rarm_ft_hmm_rel --seed 0 --eval-during-training` | `outputs/rl/<task>/<reward>/seed_<k>/` |
 | Evaluate RL checkpoints (if trained without `--eval-during-training`) | `pr-eval-rl --task add_sweetener --reward <reward> --seed <k>` | `.../eval/results.json` |
 | RL dashboard | `pr-dashboard`, then `pr-view --dashboard` | `outputs/rl/dashboard/` |
+| RL report figures | `pr-figures` | `outputs/rl/<task>/figures/` |
 | Offline reward evaluation | `pr-record`, `pr-score`, `pr-report` (all `--task add_sweetener`), then `pr-view` | `outputs/eval/<task>/results.json`, viewer |
 
 On TACC: `sbatch -J ours_s0 scripts/setup/tacc/train.slurm rarm_ft_hmm_rel 0` (add `--resume` to continue),
