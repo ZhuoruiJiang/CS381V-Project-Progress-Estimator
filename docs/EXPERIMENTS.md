@@ -35,13 +35,13 @@ pr-dashboard && pr-view --dashboard
 ```
 
 Rewards: `sparse`, `rarm` (baseline), `rarm_hmm`, `rarm_ft_hmm_rel` (ours), plus ablations as time
-allows. Step-0 success (30 trials per checkpoint), mean over the 800k–1M checkpoints (2026-11-26):
+allows. Step-0 success (30 trials per checkpoint), mean over the 800k–1M checkpoints (2026-11-28):
 
 | Reward | Seeds | Last 3 |
 |---|---|---|
-| `sparse` | 5 | 0.00 |
+| `sparse` | 6 | 0.00 |
 | `rarm` | 5 | 0.26 |
-| `rarm_hmm` | 4 | **0.94** |
+| `rarm_hmm` | 5 | **0.88** |
 | `rarm_ft_hmm_rel` | 5 | 0.82 |
 
 Per-seed successes, means per checkpoint and provenance: [RESULTS.md](RESULTS.md). Results:
